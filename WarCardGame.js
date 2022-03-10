@@ -13,16 +13,13 @@ class Deck {
 			}
 		}
 	}
-	shuffleDeck() {
-    		let i = 0;
-        	let x = 0;
-        	let temp = 0;
-    		for (i = this.cards.length - 1; i > 0; i--) {
-        		x = Math.floor(Math.random() * (i + 1));
-        		temp = this.cards[i];
-        		this.cards[i] = this.cards[x];
-        		this.cards[x] = temp;
-    		}
+	shuffleDeck() {  //
+		for (let i = this.cards.length - 1; i > 0; i--) {
+			let j = Math.floor(Math.random() * i);
+			let temp = this.cards[i];
+			this.cards[i] = this.cards[j];
+			this.cards[j] = temp;
+		}
 	}
 
 	returnDeck(){
@@ -40,6 +37,8 @@ class Deck {
 let deck = new Deck();
 deck.createDeck();
 console.log(deck);
+deck.dealOneCard();
+console.log(deck); // gets rid of one card
 
 /*************** PLAYER CLASS *************/
 
