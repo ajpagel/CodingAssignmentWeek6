@@ -1,3 +1,20 @@
+const suits = ["Spades", "Diamonds", "Club", "Heart"];
+const values = [
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "Jack",
+  "Queen",
+  "King",
+  "Ace"
+];
+
 /***************DECK CLASS *************/
 
 class Deck {
@@ -5,11 +22,11 @@ class Deck {
 		this.cards = [];
 	}
 	createDeck(){
-		this.suit = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];	
-		this.face = [ '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace']
-		for (let s = 0; s < this.suit.length; s++){
-			for (let f = 0; f < this.face.length; f++){
-			this.cards.push(this.face[f] + ' of ' +this.suit[s]);
+		/* this.suit = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];	
+		this.face = [ '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'] */
+		for (let s = 0; s < suits.length; s++){
+			for (let v = 0; v < values.length; v++){
+			this.cards.push(values[v] + ' of ' + suits[s]);
 			}
 		}
 	}
