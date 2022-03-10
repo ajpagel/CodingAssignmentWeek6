@@ -151,11 +151,11 @@ for (let x = 0; x < 26; x++){
     console.log(player2Card);
 //scoring for each round
 	if (player1.returnCardValue(player1Card) > player2.returnCardValue(player2Card)){
-		console.log(`${player1.playerName} wins this round!`);
+		console.log(`${player1.playerName} wins this round! ${player1Card} beats ${player2Card}`);
 		player1.incrementScore();
 	}
 	else if (player1.returnCardValue(player1Card) < player2.returnCardValue(player2Card)){
-		console.log(`${player2.playerName} wins this round!`);
+		console.log(`${player2.playerName} wins this round! ${player2Card} beats ${player1Card}`);
 		player2.incrementScore();
 	}
 	else{
