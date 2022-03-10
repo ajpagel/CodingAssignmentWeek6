@@ -22,15 +22,13 @@ class Deck {
 		this.cards = [];
 	}
 	createDeck(){
-		/* this.suit = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];	
-		this.face = [ '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'] */
 		for (let s = 0; s < suits.length; s++){
 			for (let v = 0; v < values.length; v++){
 			this.cards.push(values[v] + ' of ' + suits[s]);
 			}
 		}
 	}
-	shuffleDeck() {  //
+	shuffleDeck() {  
 		for (let i = this.cards.length - 1; i > 0; i--) {
 			let j = Math.floor(Math.random() * i);
 			let temp = this.cards[i];
@@ -43,7 +41,7 @@ class Deck {
 		return this.cards;
 	}
 
-	dealOneCard(){
+	dealCard(){
 		return this.cards.pop();
 
 	}
@@ -54,18 +52,19 @@ class Deck {
 let deck = new Deck();
 deck.createDeck();
 console.log(deck);
-deck.dealOneCard();
+deck.dealCard();
 console.log(deck); // gets rid of one card
 
 /*************** PLAYER CLASS *************/
 
 class Player {
-	constructor(){
+	constructor(name){
 		this.hand = [];
 		this.score = 0;
+		this.playerName = name;
 	}
 
-	takeOneCard(card){
+	takeCard(card){
 		this.hand.push(card);
 	}
 
@@ -126,6 +125,9 @@ class Player {
 	}
 
 }
+//creating objects of the player class
+const player1 = new Player('Amanda');
+const player2 = new Player('Jon');
 
 
 //Create, Build, and Shuffle Deck of Cards
@@ -133,42 +135,37 @@ myDeck = new Deck();
 myDeck.createDeck();
 myDeck.shuffleDeck();
 
-//Create New Players
-player1 = new Player();
-player2 = new Player();
-
-//Deal Cards to Players one at a time
+//Each player will get dealt one card at a time
 for (let x = 0; x < 26; x++){
-	player1.takeOneCard(myDeck.dealOneCard());
-	player2.takeOneCard(myDeck.dealOneCard());
+	player1.takeCard(myDeck.dealCard());
+	player2.takeCard(myDeck.dealCard());
 }
 
 
 //Play each Card
 for (let x = 0; x < 26; x++){
-
 	let player1Card = player1.playCard();
 	let player2Card = player2.playCard();
-
+//see which card each player is dealt
     console.log(player1Card);
     console.log(player2Card);
-
+//scoring for each round
 	if (player1.returnCardValue(player1Card) > player2.returnCardValue(player2Card)){
-		console.log('Player one wins this round because ' + player1Card + ' beats ' + player2Card);
+		console.log(`${player1.playerName} wins this round!`);
 		player1.incrementScore();
 	}
 	else if (player1.returnCardValue(player1Card) < player2.returnCardValue(player2Card)){
-		console.log('Player two wins this round because ' + player2Card + ' beats ' + player1Card);
+		console.log(`${player2.playerName} wins this round!`);
 		player2.incrementScore();
 	}
 	else{
-		console.log('This round is a tie because ' + player1Card + ' ties with ' + player2Card);
+		console.log('This round is a tie!');
 	}
 
 		
 }
 
-// Display Final results
-console.log("Player 1 Final Score: " + player1.returnScore());
-console.log("Player 2 Final Score: " + player2.returnScore());
+//Final results
+console.log(`${player1.playerName} Final Score: ${player1.score}`);
+console.log(`${player2.playerName} Final Score: ${player2.score}`);
 
