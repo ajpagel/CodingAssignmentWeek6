@@ -1,10 +1,10 @@
-const suit = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
-const value = [ 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
+const suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
+const values = [ 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
 const rank = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
-console.log(suit);
+console.log(suits);
 console.log(rank);
-console.log(value); 
+console.log(values); 
 
 /*************************************************************
             Player CLASS
@@ -39,8 +39,8 @@ const playerTwo = new Player("Jon");
 class Card { 
     // a value and method to describe each card
     constructor(suit, value, rank) {
-        this.suit = suit;
-        this.value = value;
+        this.suit = suits;
+        this.value = values;
         this.rank = rank;
     }
     //method to describe each card
@@ -62,25 +62,38 @@ class Deck {
     }
     
     createDeck() {
-        for(let x = 0; x < suit.length; x++) {
+        for (let s = 0; s < suits.length; s++){
+			for (let v = 0; v < values.length; v++){
+			this.cards.push(values[v] + ' of ' + suits[s]);
+			}
+		}
+        /* for(let x = 0; x < suit.length; x++) {
             for(let y = 0; y < rank.length; y++) {
                 this.cards.push(new Card(suit[x], value[y], rank[y]));
             }
-        }
+        } */
     }
     
     //need a way to shuffle the deck that we just created
     shuffleDeck() {
-        for(let i = 0; i < 52; i++){
-            let tempCard= this.cards[i];
-            let randomIndex = Math.floor(Math.random() * 52);
-            this.cards[i]= this.cards[randomIndex];
-            this.cards[randomIndex] = tempCard;
-        }
+        for (let i = this.cards.length - 1; i > 0; i--) {
+			let j = Math.floor(Math.random() * i);
+			let temp = this.cards[i];
+			this.cards[i] = this.cards[j];
+			this.cards[j] = temp;
+		}
+	}
+
+    //     for(let i = 0; i < 52; i++){
+    //         let tempCard= this.cards[i];
+    //         let randomIndex = Math.floor(Math.random() * 52);
+    //         this.cards[i]= this.cards[randomIndex];
+    //         this.cards[randomIndex] = tempCard;
+    //     }
     
-        return this.cards;
-    } 
-    
+    //     return this.cards;
+    // } 
+
     //now deal the deck that was created and shuffled. This should iterate through the deck of 52 cards and give a card to each player every other turn. Use for loop.
     dealDeck() {
         for (let i = 0; i < 52; i += 2) {
@@ -156,14 +169,14 @@ class PlayGame {
         for(let round = 0; round < 26; round++){
             let playerOneCards = playerOne.playerCards.pop(); 
             let playerTwoCards = playerTwo.playerCards.pop();
-            console.log(`Round ${round +1}: ${playerOne.playerName} has a ${playerOneCards.value} of ${playerOneCards.suit} and ${playerTwo.playerName} has a ${playerTwoCards.value} of ${playerTwoCards.suit} `);
-            if(playerOneCards.value > playerTwoCards.value){
+            console.log(`Round ${round +1}: ${playerOne.playerName} has a ${playerOneCards} and ${playerTwo.playerName} has a ${playerTwoCards}`);
+            if(playerOneCards > playerTwoCards){
                 console.log(`${playerOne.playerName} wins! Point awarded!`);
                 playerOne.playerScore++;
-            } else if(playerOneCards.value < playerTwoCards.value){
+            } else if(playerOneCards < playerTwoCards){
                 console.log(`${playerTwo.playerName} wins! Point awarded!`);
                 playerTwo.playerScore++;
-            } else if(playerOneCards.value === playerTwoCards.value){
+            } else if(playerOneCards === playerTwoCards){
                     console.log(`Players Tied. No points given.`);
                 }
             }
@@ -174,9 +187,3 @@ class PlayGame {
 //next, start the game!
 let game =  new PlayGame();
 game.startNewGame();
-
-
-
-
-//OLD DECK
-
