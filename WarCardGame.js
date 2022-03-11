@@ -168,4 +168,3 @@ for (let x = 0; x < 26; x++){
 //Final results
 console.log(`${player1.playerName} Final Score: ${player1.score}`);
 console.log(`${player2.playerName} Final Score: ${player2.score}`);
-
