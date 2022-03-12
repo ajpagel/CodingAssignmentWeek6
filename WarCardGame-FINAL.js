@@ -1,10 +1,29 @@
 const suit = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
 const value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', "Ace"];
-const rank = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+//Changes the values of each element to a number object.values()
+const cardValue = { 
+    "2": 2, 
+    "3": 3, 
+    "4": 4, 
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8, 
+    "9": 9, 
+    "10": 10, 
+    "J": 11,
+    "Q": 12,
+    "K": 13,
+    "A": 14
+
+}
+
 
 console.log(suit);
-console.log(rank);
+console.log(cardValue);
 console.log(value); 
+
+
 
 
 /*************************************************************
@@ -70,7 +89,7 @@ class Deck {
 			}
 		}
         
-        for(let card of this.cards){
+        /* for(let card of this.cards){
             if(card.value === "Ace"){
                 card.rank = 13;
             } else if (card.value === "Jack"){
@@ -80,7 +99,7 @@ class Deck {
             } else if (card.value === "King"){
                 card.rank = 12;
             }
-        } 
+        }  */
     }
 
 
@@ -183,8 +202,7 @@ class PlayGame {
                 }
             } 
         }
-    }     
-
+    }
     
 //next, start the game!
 let game =  new PlayGame();
