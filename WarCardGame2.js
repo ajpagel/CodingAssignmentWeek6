@@ -67,7 +67,6 @@ class Deck {
         for (let s = 0; s < suit.length; s++){
 			for (let v = 0; v < value.length; v++){
 			    this.cards.push(value[v] + ' of ' + suit[s]);
-                // this.cards.push(new Card(suit[s], value[v], v));
 			}
 		}
         
