@@ -1,10 +1,11 @@
-const suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
-const values = [ 'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
-const rank = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+const suit = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
+const value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', "Ace"];
+const rank = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
-console.log(suits);
+console.log(suit);
 console.log(rank);
-console.log(values); 
+console.log(value); 
+
 
 /*************************************************************
             Player CLASS
@@ -39,17 +40,18 @@ const playerTwo = new Player("Jon");
 class Card { 
     // a value and method to describe each card
     constructor(suit, value, rank) {
-        this.suit = suits;
-        this.value = values;
+        this.suit = suit;
+        this.value = value;
         this.rank = rank;
     }
     //method to describe each card
-    showCard(){
-        return `Suit: ${this.suit}, Value: ${this.value}, Rank: ${this.rank}`;
+    describe(){
+        return `Suit: ${this.suit}, Value: ${this.value}`, `Rank:${this.rank}`;
     }
+
 }
-/* let newCard = new Card('Clubs', 'Ace', 1); 
-console.log(newCard.showCard()); */
+// let newCard = new Card('Clubs', 'Ace'); 
+// console.log(newCard.describe());
 
 
 /*************************************************************
@@ -62,19 +64,29 @@ class Deck {
     }
     
     createDeck() {
-        for (let s = 0; s < suits.length; s++){
-			for (let v = 0; v < values.length; v++){
-			this.cards.push(values[v] + ' of ' + suits[s]);
+        for (let s = 0; s < suit.length; s++){
+			for (let v = 0; v < value.length; v++){
+			    this.cards.push(value[v] + ' of ' + suit[s]);
+                // this.cards.push(new Card(suit[s], value[v], v));
 			}
 		}
-        /* for(let x = 0; x < suit.length; x++) {
-            for(let y = 0; y < rank.length; y++) {
-                this.cards.push(new Card(suit[x], value[y], rank[y]));
+        
+        for(let card of this.cards){
+            if(card.value === "Ace"){
+                card.rank = 13;
+            } else if (card.value === "Jack"){
+                card.rank = 10;
+            } else if (card.value === "Queen"){
+                card.rank = 11;
+            } else if (card.value === "King"){
+                card.rank = 12;
             }
-        } */
+        } 
     }
+
+
     
-    //need a way to shuffle the deck that we just created
+    //need a way to shuffle the deck 
     shuffleDeck() {
         for (let i = this.cards.length - 1; i > 0; i--) {
 			let j = Math.floor(Math.random() * i);
@@ -83,16 +95,6 @@ class Deck {
 			this.cards[j] = temp;
 		}
 	}
-
-    //     for(let i = 0; i < 52; i++){
-    //         let tempCard= this.cards[i];
-    //         let randomIndex = Math.floor(Math.random() * 52);
-    //         this.cards[i]= this.cards[randomIndex];
-    //         this.cards[randomIndex] = tempCard;
-    //     }
-    
-    //     return this.cards;
-    // } 
 
     //now deal the deck that was created and shuffled. This should iterate through the deck of 52 cards and give a card to each player every other turn. Use for loop.
     dealDeck() {
@@ -117,6 +119,7 @@ class Deck {
     console.log(deck);
     deck.shuffleDeck();
     console.log(deck); 
+
 
 
     // an array of cards 
@@ -166,7 +169,7 @@ class PlayGame {
     }
 
     newRound() {
-        for(let round = 0; round < 26; round++){
+      for(let round = 0; round < 26; round++){
             let playerOneCards = playerOne.playerCards.pop(); 
             let playerTwoCards = playerTwo.playerCards.pop();
             console.log(`Round ${round +1}: ${playerOne.playerName} has a ${playerOneCards} and ${playerTwo.playerName} has a ${playerTwoCards}`);
@@ -179,7 +182,7 @@ class PlayGame {
             } else if(playerOneCards === playerTwoCards){
                     console.log(`Players Tied. No points given.`);
                 }
-            }
+            } 
         }
     }     
 
