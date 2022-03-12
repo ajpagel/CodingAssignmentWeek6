@@ -42,7 +42,7 @@ const playerTwo = new Player("Jon");
 
 class Card { 
     // a value and method to describe each card
-    constructor(suit, cardValue, rank) {
+    constructor(suit, value, rank) {
         this.suit = suit;
         this.value = value;
         this.rank = rank;
@@ -69,7 +69,7 @@ class Deck {
     createDeck() {
         for (let s = 0; s < suit.length; s++){
 			for (let v = 0; v < value.length; v++){
-			    this.cards.push(value[v] + ' of ' + suit[s]);
+                this.cards.push(new Card(suit[s], value[v], rank[v]));
 			}
 		}
         
@@ -174,14 +174,14 @@ class PlayGame {
         for(let round = 0; round < 26; round++){
             let playerOneCards = playerOne.playerCards.pop(); 
             let playerTwoCards = playerTwo.playerCards.pop();
-            console.log(`Round ${round +1}: ${playerOne.playerName} has a ${playerOneCards} and ${playerTwo.playerName} has a ${playerTwoCards}`);
-            if(playerOneCards > playerTwoCards){
+            console.log(`Round ${round +1}: ${playerOne.playerName} has a ${playerOneCards.value} of ${playerOneCards.suit} ${playerOneCards.describe()} and ${playerTwo.playerName} has ${playerTwoCards.value} of ${playerTwoCards.suit} and ${playerTwoCards.describe()}`);
+            if(playerOneCards.rank > playerTwoCards.rank){
                 console.log(`${playerOne.playerName} wins! Point awarded!`);
                 playerOne.playerScore++;
-            } else if(playerOneCards < playerTwoCards){
+            } else if(playerOneCards.rank < playerTwoCards.rank){
                 console.log(`${playerTwo.playerName} wins! Point awarded!`);
                 playerTwo.playerScore++;
-            } else if(playerOneCards === playerTwoCards){
+            } else if(playerOneCards.rank === playerTwoCards.rank){
                     console.log(`Players Tied. No points given.`);
                 }
             } 
