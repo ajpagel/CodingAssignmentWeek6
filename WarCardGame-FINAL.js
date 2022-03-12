@@ -174,7 +174,8 @@ class PlayGame {
         for(let round = 0; round < 26; round++){
             let playerOneCards = playerOne.playerCards.pop(); 
             let playerTwoCards = playerTwo.playerCards.pop();
-            console.log(`Round ${round +1}: ${playerOne.playerName} has a ${playerOneCards.value} of ${playerOneCards.suit} ${playerOneCards.describe()} and ${playerTwo.playerName} has ${playerTwoCards.value} of ${playerTwoCards.suit} and ${playerTwoCards.describe()}`);
+            console.log(`Round ${round +1}: ${playerOne.playerName} has a ${playerOneCards.value} of  ${playerOneCards.suit} ${playerOneCards.describe()} 
+            and ${playerTwo.playerName} has ${playerTwoCards.value} of ${playerTwoCards.suit} and ${playerTwoCards.describe()}`);
             if(playerOneCards.rank > playerTwoCards.rank){
                 console.log(`${playerOne.playerName} wins! Point awarded!`);
                 playerOne.playerScore++;
