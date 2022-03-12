@@ -1,26 +1,10 @@
 const suit = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
 const value = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', "Ace"];
-//Changes the values of each element to a number object.values()
-const cardValue = { 
-    "2": 2, 
-    "3": 3, 
-    "4": 4, 
-    "5": 5,
-    "6": 6,
-    "7": 7,
-    "8": 8, 
-    "9": 9, 
-    "10": 10, 
-    "J": 11,
-    "Q": 12,
-    "K": 13,
-    "A": 14
-
-}
+const rank = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
 
 console.log(suit);
-console.log(cardValue);
+console.log(rank);
 console.log(value); 
 
 
@@ -58,7 +42,7 @@ const playerTwo = new Player("Jon");
 
 class Card { 
     // a value and method to describe each card
-    constructor(suit, value, rank) {
+    constructor(suit, cardValue, rank) {
         this.suit = suit;
         this.value = value;
         this.rank = rank;
@@ -89,7 +73,7 @@ class Deck {
 			}
 		}
         
-        /* for(let card of this.cards){
+        for(let card of this.cards){
             if(card.value === "Ace"){
                 card.rank = 13;
             } else if (card.value === "Jack"){
@@ -99,7 +83,7 @@ class Deck {
             } else if (card.value === "King"){
                 card.rank = 12;
             }
-        }  */
+        }  
     }
 
 
@@ -187,7 +171,7 @@ class PlayGame {
     }
 
     newRound() {
-      for(let round = 0; round < 26; round++){
+        for(let round = 0; round < 26; round++){
             let playerOneCards = playerOne.playerCards.pop(); 
             let playerTwoCards = playerTwo.playerCards.pop();
             console.log(`Round ${round +1}: ${playerOne.playerName} has a ${playerOneCards} and ${playerTwo.playerName} has a ${playerTwoCards}`);
@@ -201,7 +185,7 @@ class PlayGame {
                     console.log(`Players Tied. No points given.`);
                 }
             } 
-        }
+        } 
     }
     
 //next, start the game!
